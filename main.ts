@@ -3,9 +3,8 @@ import puppeteer, { Puppeteer } from 'puppeteer';
 import fs from 'fs';
 import { load } from 'cheerio';
 
-async function exec (container: string,mbl: string): Promise<any> {
+async function exec (container: string, mbl: string): Promise<any> {
     const url = 'https://eschenker.dbschenker.com/app/tracking-public/?language_region=en-US_US';
-    // const url = `https://eschenker.dbschenker.com/app/tracking-public/?refNumber=${mbl}`;
     const browser = await puppeteer.launch({headless: 'new'});
     const page = await browser.newPage();
     await page.setDefaultNavigationTimeout(0);
@@ -34,4 +33,5 @@ async function exec (container: string,mbl: string): Promise<any> {
     browser.close();
 }
 
+// get the command line arguments
 exec(process.argv[2] || '', process.argv[3] || '');
